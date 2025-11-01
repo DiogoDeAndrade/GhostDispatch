@@ -8,9 +8,8 @@ Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
 
 ## Todo
 
-* Place ghost on queue
 * Lane following
-* Change directions of arrows (switcher)
+  * Navigation system (if needed)
 * Arrive at spot
 * Rule system
 * Fog system
@@ -19,6 +18,7 @@ Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
   * Wrong gate
   * Lost in mist
   * Angry because waiting
+* Ghost spawn
 * Build environment
 
 ## Art

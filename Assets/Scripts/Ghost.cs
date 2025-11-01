@@ -18,7 +18,8 @@ public class Ghost : Interactable
     public SpriteRenderer3D mouth => mouthRenderer;
     public SpriteRenderer3D accessoryHat => hatRenderer;
 
-    SpriteEffect bodySpriteEffect;
+    SpriteEffect    bodySpriteEffect;
+    bool            onQueue = false;
 
     void Start()
     {
@@ -86,11 +87,19 @@ public class Ghost : Interactable
 
     public override void OnFocus(bool focusEnable)
     {
-        bodySpriteEffect?.SetOutline((focusEnable) ? (3.0f) : (0.0f), Color.yellow);
+        bodySpriteEffect?.SetOutline(focusEnable ? (3.0f) : (0.0f), Color.yellow);
     }
+
+    public override bool canInteract => !onQueue;
 
     public override void Interact()
     {
-        throw new System.NotImplementedException();
+        if (onQueue) return;
+
+        onQueue = true;
+
+        // Find main queue
+        var queue = LevelManager.GetMainQueue();
+        queue.Add(this);
     }
 }

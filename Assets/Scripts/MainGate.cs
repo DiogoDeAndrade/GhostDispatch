@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MainGate : Interactable, IQueueHandler
 {
+    [SerializeField] private GhostQueue nextQueue;
+
     Animator    animator;
     Coroutine   toggleCR;
     bool        open = false;
@@ -27,9 +29,16 @@ public class MainGate : Interactable, IQueueHandler
     {
         animator.SetTrigger("Toggle");
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.0f);
 
         open = !open;
         toggleCR = null;
+    }
+
+    public GhostQueue GetNextQueue()
+    {
+        if (open) return nextQueue;
+
+        return null;
     }
 }
