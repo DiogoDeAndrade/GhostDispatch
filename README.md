@@ -25,6 +25,7 @@ Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
 
 - [Skybox](https://freestylized.com/skybox/sky_17/) from [FreeStylized]((https://freestylized.com/), free for commercial and non-commercial use.
 - [Graveyard Kit](https://kenney.nl/assets/graveyard-kit) by [Kenney](https://kenney.nl), [CC0] license.
+- [Little Post](https://www.fab.com/listings/cdf20b18-8038-4f97-93d3-50dea4990a4e) model by [Get Dead Entertainment](https://www.fab.com/sellers/Get%20Dead%20Entertainment), [CC-BY 4.0] license.
 - [Hat icons](https://www.flaticon.com/free-icons/hat) created by Good Ware - Flaticon, use with permission.
 - [Hat icons](https://www.flaticon.com/free-icons/hat) created by Smashicons - Flaticon, use with permission.
 - Everything else done by [Diogo de Andrade], licensed through the [CC0] license.
