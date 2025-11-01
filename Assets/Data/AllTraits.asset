@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d6530a6b7972c42b83c86f14ab797d, type: 3}
+  m_Name: AllTraits
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSet
+  traits:
+  - originalElements:
+    - value: {fileID: 11400000, guid: 297869b84df33dd409e2f657d42c21ac, type: 2}
+      weight: 1
+    - value: {fileID: 11400000, guid: a826df9c1cb6cc64da9ee1b14a0ee48b, type: 2}
+      weight: 1
+    - value: {fileID: 11400000, guid: 5498035a28ec43447a3bce8f1108c13d, type: 2}
+      weight: 1
+    - value: {fileID: 11400000, guid: 4146f7c140f05eb449cfd8a7126326d5, type: 2}
+      weight: 1
+    - value: {fileID: 11400000, guid: 9ab48170a7d5df4449c85159b0ba856d, type: 2}
+      weight: 1
+    withReplacement: 1
+  - originalElements:
+    - value: {fileID: 0}
+      weight: 2
+    - value: {fileID: 11400000, guid: b90c638e5f9de4c469a30dd2355007e1, type: 2}
+      weight: 0.5
+    - value: {fileID: 11400000, guid: 3f8356c8d0d01f94ba77089e50f9ba0d, type: 2}
+      weight: 0.5
+    withReplacement: 1
+  - originalElements:
+    - value: {fileID: 11400000, guid: 1ec7e699292cab14ba60a233bfa739f2, type: 2}
+      weight: 1
+    - value: {fileID: 11400000, guid: d1fd4707de841df45a7fff79b1cec790, type: 2}
+      weight: 1
+    - value: {fileID: 11400000, guid: 4c920b8ca27aa4b4d86bb13338bf1f3b, type: 2}
+      weight: 1
+    - value: {fileID: 11400000, guid: 54d0e15f7c964d94ab0cbac388e3439c, type: 2}
+      weight: 1
+    withReplacement: 1
