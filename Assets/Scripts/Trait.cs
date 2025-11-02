@@ -2,11 +2,12 @@ using NaughtyAttributes;
 using System;
 using UnityEngine;
 using UnityEngine.VFX;
+using static UnityEngine.Rendering.BoolParameter;
 
 [CreateAssetMenu(fileName = "Trait", menuName = "Ghost Dispatch/Trait")]
 public class Trait : ScriptableObject
 {
-    public enum TargetDisplay { MainColor, Hat, Eyes, Mouth };
+    public enum TargetDisplay { MainColor, Hat, Eyes, Mouth, UIExpression };
 
     [Serializable]
     public class VisualDisplay
@@ -58,6 +59,40 @@ public class Trait : ScriptableObject
                 default:
                     break;
             }
+        }
+    }
+
+    public Color GetColor(TargetDisplay displayType)
+    {
+        foreach (var v in visualDisplays)
+        {
+            if (v.type == displayType) return v.color;
+        }
+
+        return new Color(1, 1, 1, 0);
+    }
+
+    public Sprite uiFaceSprite
+    {
+        get
+        {
+            foreach (var v in visualDisplays)
+            {
+                if (v.type == TargetDisplay.UIExpression) return v.sprite;
+            }
+            return null;
+        }
+    }
+
+    public Sprite uiAccessorySprite
+    {
+        get
+        {
+            foreach (var v in visualDisplays)
+            {
+                if (v.type == TargetDisplay.Hat) return v.sprite;
+            }
+            return null;
         }
     }
 }

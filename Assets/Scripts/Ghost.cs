@@ -38,6 +38,7 @@ public class Ghost : Interactable
     float           restlessTimer;
     Vector3         prevPos;
     HoverWithNoise  hoverWithNoise;
+    Vector3?        moveTarget;
 
     void Start()
     {
@@ -55,12 +56,18 @@ public class Ghost : Interactable
     {
         if (isDead) return;
 
+        if ((!onQueue) && (moveTarget.HasValue))
+        {
+            Vector2 newPos = Vector2.MoveTowards(transform.position.xz(), moveTarget.Value.xz(), Time.deltaTime * LevelManager.ghostMoveSpeed);
+            transform.position = new Vector3(newPos.x, transform.position.y, newPos.y);
+        }
+
         if (Physics.Raycast(transform.position + Vector3.up * 1.0f, Vector3.down, out var hit, float.MaxValue, groundLayer))
         {
             transform.position = hit.point;
         }
 
-        if (Vector3.Distance(transform.position, prevPos) < 1e-3)
+        if (Vector3.Distance(transform.position.xz(), prevPos.xz()) < 1e-3)
         {
             restlessTimer += Time.deltaTime;
             if (restlessTimer > restlessInterval)
@@ -96,17 +103,17 @@ public class Ghost : Interactable
             {
                 hoverWithNoise.SetMaxNoise(Vector3.zero);
             }
-
-            prevPos = transform.position;
-        }
+        }       
         else
         {
-            restlessInterval = 0.0f;
+            restlessTimer = 0.0f;
             hoverWithNoise.SetMaxNoise(Vector3.zero);
         }
+
+        prevPos = transform.position;
     }
 
-    bool HasTrait(Trait trait)
+    public bool HasTrait(Trait trait)
     {
         foreach (var t in activeTraits)
         {
@@ -219,5 +226,17 @@ public class Ghost : Interactable
         yield return new WaitForSeconds(1.0f);
 
         Destroy(gameObject);
+    }
+
+    public void Goto(Vector3 position)
+    {
+        if (onQueue) return;
+
+        if (Physics.Raycast(position + Vector3.up * 50.0f, Vector3.down, out var hit, float.MaxValue, groundLayer))
+        {
+            position.y = hit.point.y;
+        }
+
+        moveTarget = position;
     }
 }

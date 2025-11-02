@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UC;
 using UnityEngine;
 
@@ -18,10 +20,13 @@ public class Portal : Interactable, IQueueHandler
     [SerializeField, ColorUsage(true, true)] 
     private Color          colorSuccess;
 
-    Material    portalMaterial;
-    float       colorEffectTimer;
-    Color       sourceColor;
-    Tooltip     activeTooltip;
+    Material        portalMaterial;
+    float           colorEffectTimer;
+    Color           sourceColor;
+    ArchwayTooltip  activeTooltip;
+    List<Order>     rules = new();
+
+    public string displayName => gateName;
 
     private void Awake()
     {
@@ -44,7 +49,7 @@ public class Portal : Interactable, IQueueHandler
         portalObject.enabled = false;
         colorEffectTimer = 0.0f;
     }
-    
+
     void Update()
     {
         if (colorEffectTimer > 0.0f)
@@ -61,6 +66,20 @@ public class Portal : Interactable, IQueueHandler
                 portalMaterial.SetColor("_EmissionColor", color);
                 portalLight.color = color;
             }
+        }
+
+        bool updateUI = false;
+        foreach (var rule in rules)
+        {
+            rule.duration -= Time.deltaTime;
+            if (rule.duration <= 0.0f) updateUI = true;
+        }
+
+        if (updateUI)
+        {
+            rules.RemoveAll((r) => r.duration <= 0.0f);
+
+            activeTooltip?.SetRule(rules);
         }
     }
 
@@ -97,7 +116,14 @@ public class Portal : Interactable, IQueueHandler
 
     bool IsCorrect(Ghost ghost)
     {
-        return true;
+        if (rules.Count == 0) return true;
+
+        foreach (var r in rules)
+        {
+            if (r.IsCorrect(ghost)) return true;
+        }
+
+        return false;
     }
 
     IEnumerator KillGhostCR(Ghost ghost)
@@ -117,9 +143,10 @@ public class Portal : Interactable, IQueueHandler
         if (focusEnable)
         {
             if (activeTooltip == null)
-                activeTooltip = TooltipManager.CreateTooltip();
+                activeTooltip = TooltipManager.CreateTooltip() as ArchwayTooltip;
             activeTooltip.SetText(gateName);
             activeTooltip.SetPosition(tooltipPosition.position);
+            activeTooltip.SetRule(rules);
         }
         else
         {
@@ -132,5 +159,11 @@ public class Portal : Interactable, IQueueHandler
 
     public override void Interact()
     {
+    }
+
+    public void AddRule(Order currentOrder)
+    {
+        rules.Add(currentOrder);
+        activeTooltip?.SetRule(rules);
     }
 }

@@ -248,9 +248,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  activeTraits:
-  - {fileID: 11400000, guid: 297869b84df33dd409e2f657d42c21ac, type: 2}
-  - {fileID: 11400000, guid: d1fd4707de841df45a7fff79b1cec790, type: 2}
+  activeTraits: []
   emotionConverter:
   - sourceTrait: {fileID: 11400000, guid: 1ec7e699292cab14ba60a233bfa739f2, type: 2}
     destTrait: {fileID: 11400000, guid: 54d0e15f7c964d94ab0cbac388e3439c, type: 2}

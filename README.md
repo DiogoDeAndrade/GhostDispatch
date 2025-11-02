@@ -2,19 +2,30 @@
 
 Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
 
+I didn't have time to finish it properly, so it has the seed of something, not exactly sure what.
 
 ## Game
 
+You’re the lone dispatcher at the edge of the afterlife.
+
+Ghosts line up endlessly, each waiting to be sent to the right gate.
+
+Click to accept orders from your demon overlords, open or close gates, and switch signposts to direct ghosts where they belong.
+Fail to act fast enough and orders pile up, automatically accepting themselves — and you’ll lose precious souls in the process.
+
+Your lantern holds the souls you’ve saved — but every mistake drains its light.
+Send ghosts to the wrong gate, or leave them wandering too long, and the lantern dims.
 
 ## Todo
 
-* Messager system
-* Rule system
-* Lane following
-  * Navigation system (if needed)
-* Fog system (?)
+* Lane following - follow the line, instead of going to the target position
+* Fog system
 * Ghost description
-* Ghost spawn
+* Improved game design - automatic rules need a better generator, too much "do nothing"
+* Title screen/credits
+* Sound/music
+* Improve UI/Fonts
+* Extra levels (one with a circular stream, a simple tutorial one)
 
 ## Art
 
