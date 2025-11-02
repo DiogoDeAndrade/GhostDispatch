@@ -8,13 +8,13 @@ Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
 
 ## Todo
 
+* Messager system
 * Rule system
 * Lane following
   * Navigation system (if needed)
 * Fog system (?)
 * Ghost description
 * Ghost spawn
-* Build environment
 
 ## Art
 
@@ -23,6 +23,7 @@ Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
 - [Little Post](https://www.fab.com/listings/cdf20b18-8038-4f97-93d3-50dea4990a4e) model by [Get Dead Entertainment](https://www.fab.com/sellers/Get%20Dead%20Entertainment), [CC-BY 4.0] license.
 - [Hat icons](https://www.flaticon.com/free-icons/hat) created by Good Ware - Flaticon, use with permission.
 - [Hat icons](https://www.flaticon.com/free-icons/hat) created by Smashicons - Flaticon, use with permission.
+- [Icy Demon (Animated)](https://opengameart.org/content/icy-demon-animated-classic-hero-edit), by [Umz](https://opengameart.org/users/umz), [CC0] license.
 - Stone archway by Miguel Martinho
 - Everything else done by [Diogo de Andrade], licensed through the [CC0] license.
 

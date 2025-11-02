@@ -4,4 +4,11 @@ using UnityEngine;
 public class TraitGroup : ScriptableObject
 {
     public Trait[] traits;
+
+    public Trait Random()
+    {
+        int n = UnityEngine.Random.Range(0, traits.Length);
+
+        return traits[n];
+    }
 }
