@@ -34,6 +34,11 @@ public class GhostQueue : MonoBehaviour
         float incT = Mathf.Min(1.0f / ghosts.Count, 0.1f);
         foreach (var ghost in ghosts)
         {
+            if (ghost == null)
+            {
+                toRemove.Add(ghost);
+                continue;
+            }
             Vector3 targetPosition = GetPosition(currentT);
             float dist = Vector3.Distance(ghost.transform.position.xz(), targetPosition.xz());
             if (dist > 1e-3)

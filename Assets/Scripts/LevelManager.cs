@@ -15,8 +15,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float                      maxGhostSpeed = 1.0f;
     [SerializeField] private float                      _signpostRotationSpeed = 360.0f;
     [SerializeField] private List<PortalInitialState>   portals;
-    [SerializeField] private float                      maxSouls;
-    [SerializeField] private float                      lossPerSoul;
+    [SerializeField] private float                      maxSouls = 100.0f;
+    [SerializeField] private float                      lossPerSoul = 20.0f;
+    [SerializeField] private float                      gainPerSoul = 20.0f;
 
     static LevelManager Instance
     {
@@ -62,6 +63,11 @@ public class LevelManager : MonoBehaviour
         currentSouls -= lossPerSoul;
         if (currentSouls < 0) currentSouls = 0;
     }
+    void _SoulGain()
+    {
+        currentSouls += gainPerSoul;
+        if (currentSouls > maxSouls) currentSouls = maxSouls;
+    }
 
     public static TraitSet GetCurrentTraitSet() => Instance?._GetCurrentTraitSet();
     public static GhostQueue GetMainQueue() => Instance?._GetMainQueue();
@@ -74,5 +80,9 @@ public class LevelManager : MonoBehaviour
     public static void SoulLost()
     {
         Instance?._SoulLost();
+    }
+    public static void SoulGain()
+    {
+        Instance?._SoulGain();
     }
 }

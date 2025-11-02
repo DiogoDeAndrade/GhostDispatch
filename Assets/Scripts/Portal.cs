@@ -73,6 +73,7 @@ public class Portal : Interactable, IQueueHandler
             if (IsCorrect(ghost))
             {
                 sourceColor = colorSuccess;
+                LevelManager.SoulGain();
             }
             else
             {

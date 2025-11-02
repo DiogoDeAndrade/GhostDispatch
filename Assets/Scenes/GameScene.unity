@@ -380,6 +380,7 @@ MonoBehaviour:
     portal: {fileID: 185583984}
   maxSouls: 100
   lossPerSoul: 20
+  gainPerSoul: 20
 --- !u!4 &82406348
 Transform:
   m_ObjectHideFlags: 0

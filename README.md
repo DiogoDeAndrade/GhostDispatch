@@ -8,13 +8,11 @@ Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
 
 ## Todo
 
+* Rule system
 * Lane following
   * Navigation system (if needed)
-* Rule system
-* Fog system
+* Fog system (?)
 * Ghost description
-* Lost soul system
-  * Angry because waiting
 * Ghost spawn
 * Build environment
 

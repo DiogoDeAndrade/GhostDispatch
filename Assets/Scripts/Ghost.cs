@@ -3,11 +3,22 @@ using UnityEngine;
 using UC;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Ghost : Interactable
 {
+    [System.Serializable]
+    public struct EmotionConverter
+    {
+        public Trait sourceTrait;
+        public Trait destTrait;
+    }
+
     [SerializeField] private LayerMask          groundLayer;
     [SerializeField] private List<Trait>        activeTraits;
+    [Header("Emotions")]
+    [SerializeField] private EmotionConverter[] emotionConverter;
+    [SerializeField] private float              restlessInterval = 10.0f;
     [Header("Visuals")]
     [SerializeField] private SpriteRenderer3D   bodyRenderer;
     [SerializeField] private SpriteRenderer3D   hatRenderer;
@@ -24,22 +35,99 @@ public class Ghost : Interactable
     SpriteEffect    bodySpriteEffect;
     bool            onQueue = false;
     bool            isDead = false;
+    float           restlessTimer;
+    Vector3         prevPos;
+    HoverWithNoise  hoverWithNoise;
 
     void Start()
     {
+        prevPos = transform.position;
+
         SetupGhost();
 
         bodySpriteEffect = bodyRenderer.GetComponent<SpriteEffect>();
         
         pentagram = GetComponentInChildren<Pentagram>();
+        hoverWithNoise = GetComponent<HoverWithNoise>();
     }
 
     private void Update()
     {
+        if (isDead) return;
+
         if (Physics.Raycast(transform.position + Vector3.up * 1.0f, Vector3.down, out var hit, float.MaxValue, groundLayer))
         {
             transform.position = hit.point;
         }
+
+        if (Vector3.Distance(transform.position, prevPos) < 1e-3)
+        {
+            restlessTimer += Time.deltaTime;
+            if (restlessTimer > restlessInterval)
+            {
+                restlessTimer = 0.0f;
+
+                foreach (var c in emotionConverter)
+                {
+                    if (HasTrait(c.sourceTrait))
+                    {
+                        if (c.destTrait == null)
+                        {
+                            // kill this one
+                            Kill();
+                            LevelManager.SoulLost();
+                        }
+                        else
+                        {
+                            ConvertTrait(c.sourceTrait, c.destTrait);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            float tRestless = restlessTimer / restlessInterval;
+            if (tRestless > 0.5f)
+            {
+                tRestless = (tRestless - 0.5f) * 2.0f;
+                hoverWithNoise.SetMaxNoise(Vector3.one * tRestless * 0.1f);
+            }
+            else
+            {
+                hoverWithNoise.SetMaxNoise(Vector3.zero);
+            }
+
+            prevPos = transform.position;
+        }
+        else
+        {
+            restlessInterval = 0.0f;
+            hoverWithNoise.SetMaxNoise(Vector3.zero);
+        }
+    }
+
+    bool HasTrait(Trait trait)
+    {
+        foreach (var t in activeTraits)
+        {
+            if (t == trait) return true;
+        }
+
+        return false;
+    }
+
+    void ConvertTrait(Trait trait, Trait destTrait)
+    {
+        for (int i = 0; i < activeTraits.Count; i++)
+        {
+            if (activeTraits[i] == trait)
+            {
+                activeTraits[i] = destTrait;
+                break;
+            }
+        }
+
+        SetupGhost();
     }
 
     void SetupGhost()

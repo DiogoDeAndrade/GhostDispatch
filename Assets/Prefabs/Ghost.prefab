@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8960548869867569312}
-  - component: {fileID: 2898457762145330527}
+  - component: {fileID: 8987724118875842576}
   - component: {fileID: 8308203155536567561}
   - component: {fileID: 7092844669847990110}
   m_Layer: 6
@@ -215,7 +215,7 @@ Transform:
   - {fileID: 5250583463146452927}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2898457762145330527
+--- !u!114 &8987724118875842576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2124900282813852360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e5125ad036ba8341944c6b0f315f5d3, type: 3}
+  m_Script: {fileID: 11500000, guid: d6414b19befb4634e90076b10f2dbebb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hover
+  m_EditorClassIdentifier: 
   target: {fileID: 5492682727312162893}
   direction: {x: 0, y: 1, z: 0}
   offset: 0.25
@@ -251,6 +251,16 @@ MonoBehaviour:
   activeTraits:
   - {fileID: 11400000, guid: 297869b84df33dd409e2f657d42c21ac, type: 2}
   - {fileID: 11400000, guid: d1fd4707de841df45a7fff79b1cec790, type: 2}
+  emotionConverter:
+  - sourceTrait: {fileID: 11400000, guid: 1ec7e699292cab14ba60a233bfa739f2, type: 2}
+    destTrait: {fileID: 11400000, guid: 54d0e15f7c964d94ab0cbac388e3439c, type: 2}
+  - sourceTrait: {fileID: 11400000, guid: d1fd4707de841df45a7fff79b1cec790, type: 2}
+    destTrait: {fileID: 11400000, guid: 4c920b8ca27aa4b4d86bb13338bf1f3b, type: 2}
+  - sourceTrait: {fileID: 11400000, guid: 54d0e15f7c964d94ab0cbac388e3439c, type: 2}
+    destTrait: {fileID: 11400000, guid: 4c920b8ca27aa4b4d86bb13338bf1f3b, type: 2}
+  - sourceTrait: {fileID: 11400000, guid: 4c920b8ca27aa4b4d86bb13338bf1f3b, type: 2}
+    destTrait: {fileID: 0}
+  restlessInterval: 10
   bodyRenderer: {fileID: 276568536860853640}
   hatRenderer: {fileID: 2237773330094556510}
   eyesRenderer: {fileID: 8604730445612293995}
