@@ -10,13 +10,10 @@ Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
 
 * Lane following
   * Navigation system (if needed)
-* Arrive at spot
 * Rule system
 * Fog system
 * Ghost description
 * Lost soul system
-  * Wrong gate
-  * Lost in mist
   * Angry because waiting
 * Ghost spawn
 * Build environment
@@ -28,6 +25,7 @@ Created for the Zero Game Jam at Lusófona University, with theme "Ghost"
 - [Little Post](https://www.fab.com/listings/cdf20b18-8038-4f97-93d3-50dea4990a4e) model by [Get Dead Entertainment](https://www.fab.com/sellers/Get%20Dead%20Entertainment), [CC-BY 4.0] license.
 - [Hat icons](https://www.flaticon.com/free-icons/hat) created by Good Ware - Flaticon, use with permission.
 - [Hat icons](https://www.flaticon.com/free-icons/hat) created by Smashicons - Flaticon, use with permission.
+- Stone archway by Miguel Martinho
 - Everything else done by [Diogo de Andrade], licensed through the [CC0] license.
 
 ## Sound

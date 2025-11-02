@@ -48,11 +48,19 @@ public class GhostQueue : MonoBehaviour
                     // First in the queue, check if we can move on to the next queue
                     if (queueHandler != null)
                     {
-                        var nextQueue = queueHandler.GetNextQueue();
-                        if (nextQueue != null)
+                        if (queueHandler.IsGoal())
                         {
                             toRemove.Add(ghost);
-                            nextQueue.Add(ghost);
+                            queueHandler.ReachGoal(ghost);
+                        }
+                        else
+                        {
+                            var nextQueue = queueHandler.GetNextQueue();
+                            if (nextQueue != null)
+                            {
+                                toRemove.Add(ghost);
+                                nextQueue.Add(ghost);
+                            }
                         }
                     }
                 }

@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 using UC;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Ghost : Interactable
@@ -12,6 +13,8 @@ public class Ghost : Interactable
     [SerializeField] private SpriteRenderer3D   hatRenderer;
     [SerializeField] private SpriteRenderer3D   eyesRenderer;
     [SerializeField] private SpriteRenderer3D   mouthRenderer;
+    [SerializeField] private Pentagram          pentagram;
+    [SerializeField] private ParticleSystem     hellfirePS;
 
     public SpriteRenderer3D mainBody => bodyRenderer;
     public SpriteRenderer3D eyes => eyesRenderer;
@@ -20,12 +23,15 @@ public class Ghost : Interactable
 
     SpriteEffect    bodySpriteEffect;
     bool            onQueue = false;
+    bool            isDead = false;
 
     void Start()
     {
         SetupGhost();
 
         bodySpriteEffect = bodyRenderer.GetComponent<SpriteEffect>();
+        
+        pentagram = GetComponentInChildren<Pentagram>();
     }
 
     private void Update()
@@ -90,7 +96,7 @@ public class Ghost : Interactable
         bodySpriteEffect?.SetOutline(focusEnable ? (3.0f) : (0.0f), Color.yellow);
     }
 
-    public override bool canInteract => !onQueue;
+    public override bool canInteract => !onQueue && !isDead;
 
     public override void Interact()
     {
@@ -101,5 +107,29 @@ public class Ghost : Interactable
         // Find main queue
         var queue = LevelManager.GetMainQueue();
         queue.Add(this);
+    }
+
+    [Button("Kill")]
+    public void Kill()
+    {
+        isDead = true;
+        StartCoroutine(KillCR());
+    }
+
+    IEnumerator KillCR()
+    { 
+        pentagram.enabled = true;
+
+        yield return new WaitForSeconds(0.25f);
+
+        hellfirePS.Play();
+
+        yield return new WaitForSeconds(0.1f);
+
+        bodyRenderer.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1.0f);
+
+        Destroy(gameObject);
     }
 }
